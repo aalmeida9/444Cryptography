@@ -3,6 +3,7 @@
 # for each letter in alphabet check if the caesar cypher
 # for each "decrypted" text compare it to the dictionary
 import csv
+import time
 from Ceaser import Cryptography
 
 with open('ourDictionary.txt') as file:
@@ -25,12 +26,14 @@ with open('input.txt') as csvFile:
     for row in csvFileReader:
         #decrypt caesar decrypt DES here
         #encryptedMessage.append(row);
+        caesarStartTime = time.time()   # start timer to see how long it takes to decrypt
         for x in range(1, 26):
             encryptedText = caesar.decryptCaesar(x, row[3].strip())
             for word in dictionaryList:
                 if(encryptedText.lower() == word):
                     print("dictionary word is", word, "with caesar cypher ", x)
-
+        endTime = time.time()
+        print("average time to solve is ", (endTime - caesarStartTime)/25)
 
 # create the caesar cypher object
 
