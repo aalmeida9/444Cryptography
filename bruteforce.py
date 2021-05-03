@@ -26,14 +26,31 @@ with open('input.txt') as csvFile:
     for row in csvFileReader:
         #decrypt caesar decrypt DES here
         #encryptedMessage.append(row);
-        caesarStartTime = time.time()   # start timer to see how long it takes to decrypt
-        for x in range(1, 26):
-            encryptedText = caesar.decryptCaesar(x, row[3].strip())
-            for word in dictionaryList:
-                if(encryptedText.lower() == word):
-                    print("dictionary word is", word, "with caesar cypher ", x)
-        endTime = time.time()
-        print("average time to solve is ", (endTime - caesarStartTime)/25)
+        if(row[2] == "CS"):
+            caesarStartTime = time.time()   # start timer to see how long it takes to decrypt
+            for x in range(1, 26):
+                encryptedText = caesar.decryptCaesar(x, row[3].strip())
+                for word in dictionaryList:
+                    if(encryptedText.lower() == word):
+                        outputWord = encryptedText.lower()
+                        print("dictionary word is", word, "with caesar cypher ", x)
+                        break # once you find a match stop looping through possible matches
+            endTime = time.time()
+            print("average time to solve is ", (endTime - caesarStartTime)/25)
+
+        else:   # do DES algorithm
+            DESStartTime = time.time() # start timer
+            # PUT CODE FOR DES DECRYPTION BETWEEN COMMENTS
+            # make sure you set the matched word to "outputWord"
+
+            # AND PUT CODE FOR DES DECRYPTION ABOVE
+
+            DESEndTime = time.time()
+            print("average time to solve this is ", (DESEndTime - DESStartTime)/25)
+        #output all data to output file
+        outputFile = open("output.txt")
+        outputFile.write(row[0],", ", row[1], ", ", row[2], ", ", outputWord, "\n")
+        outputFile.close()
 
 # create the caesar cypher object
 
