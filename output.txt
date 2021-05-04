@@ -1,0 +1,7 @@
+FU1,  FU2,  CS, escape
+FU2,  FU1,  CS, roger
+FU2,  FU1,  CS, that
+HQ,  FU1,  DES, come
+HQ,  FU1,  DES, back
+HQ,  FU2,  DES, attack
+HQ,  FU2,  DES, today

@@ -170,6 +170,7 @@ class DES:
 
     # Binary to decimal
     def bin_to_dec(self, bin):
+        bin1 = bin
         decimal = i = 0
         while(bin != 0):
             dec = bin % 10
@@ -223,7 +224,7 @@ class DES:
     # Encryption algorithim for DES
     def encrypt(self, plaintext, key):
         # Key transformation, in binary
-        key = hex_to_bin(key)
+        key = self.hex_to_bin(key)
         key = self.permutation(key, key_permutation, 56)
 
         # split the key into two halves
@@ -289,7 +290,7 @@ class DES:
     # Decryption algorithim for DES
     def decrypt(self, ciphertext, key):
         # Key transformation, in binary
-        key = hex_to_bin(key)
+        key = self.hex_to_bin(key)
         key = self.permutation(key, key_permutation, 56)
 
         # split the key into two halves
@@ -352,4 +353,5 @@ class DES:
         #  havles are rejoined and final permutation is done on the combined block
         final = left + right
         cipher = self.permutation(final, final_permutation, 64)
+        
         return self.bin_to_hex(cipher)
